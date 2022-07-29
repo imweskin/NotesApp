@@ -1,0 +1,235 @@
+*,*::before,*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+body {
+    background-color: #88ABFF;
+}
+::selection {
+    background-color: #88ABFF;
+    color: #fff;
+}
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb {
+    background: #d6d6d6;
+    border-radius: 100vw;
+}
+.wrapper {
+    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 265px);
+    gap: 25px;
+}
+@media (max-width: 767px) {
+    .wrapper {
+        grid-template-columns: repeat(auto-fill, 290px);
+    }
+}
+.wrapper .add-box,
+.wrapper .note {
+    list-style: none;
+    background-color: #fff;
+    height: 250px;
+    border-radius: 5px;
+    padding: 15px 20px 20px;
+}
+.wrapper .note .details {
+    max-height: 165px;
+    overflow-y: auto;
+}
+.wrapper .add-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.wrapper .add-box .icon {
+    border: 2px dashed #88ABFF;
+    border-radius: 50%;
+    height: 78px;
+    width: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.wrapper .add-box .icon i {
+    font-size: 40px;
+    color: #88ABFF;
+}
+.wrapper .add-box p {
+    color: #88ABFF;
+    font-weight: 500;
+}
+.wrapper .note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.wrapper .note .title {
+    font-size: 22px;
+    font-weight: 500;
+}
+.wrapper .note .description {
+    display: block;
+    margin-top: 5px;
+    color: #575757;
+    font-size: 16px;
+}
+.wrapper .note .bottom-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+.wrapper .note .bottom-content .date {
+    color: #6d6d6d;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.wrapper .note .bottom-content .settings {
+    position: relative;
+}
+.wrapper .note .bottom-content .settings i {
+    font-size: 15px;
+    color: #6d6d6d;
+    cursor: pointer;
+}
+.wrapper .note .menu {
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.15);
+    border-radius: 5px;
+    padding: 5px 0;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: all 0.3s;
+}
+.wrapper .note .settings.show .menu {
+    transform: scale(1);
+}
+.wrapper .note .menu li {
+    height: 25px;
+    padding: 17px 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.wrapper .note .menu li:hover {
+    background-color: #f6f6f6;
+}
+.wrapper .note .menu li i {
+    margin-right: 7px;
+}
+.popup-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.4);
+    height: 100%;
+    width: 100%;
+}
+.popup-box .popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    max-width: 400px;
+    width: 100%;
+    transform: translate(-50%,-50%);
+}
+.popup-box,
+.popup-box .popup {
+    transition: all 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+.popup-box.show,
+.popup-box.show .popup {
+    opacity: 1;
+    pointer-events: auto;
+}
+.popup-box .popup .content {
+    width: calc(100% - 15px);
+    background-color: #fff;
+    border-radius: 5px;
+}
+.popup-box .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    border-bottom: 1px solid #ccc;
+}
+.popup-box .header h3 {
+    font-weight: 500;
+    font-size: 20px;
+}
+.popup-box .header i {
+    font-size: 23px;
+    cursor: pointer;
+    color: #8b8989;
+}
+.popup-box .body {
+    padding: 15px 25px 35px;
+}
+.popup-box .body .row {
+    margin-bottom: 20px;
+}
+/* instead of .popup-box .body input,
+.popup-box .body textarea */
+.popup-box .body :where(input,textarea) {
+    width: 100%;
+    border: 1px solid #777;
+    outline: none;
+    border-radius: 5px;
+    padding: 0px 15px;
+    margin-top: 5px;
+    font-size: 17px;
+}
+.popup-box .body input {
+    height: 50px;
+}
+.popup-box .body textarea {
+    resize: none;
+    height: 150px;
+    padding: 8px 15px;
+}
+.popup-box .body label {
+    font-size: 18px;
+    color: #333;
+}
+.popup-box .body button {
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 50px;
+    border-radius: 6px;
+    background-color: #6a93f8;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: pointer;
+}
